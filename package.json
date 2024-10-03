@@ -2,9 +2,11 @@
   "name": "aulacrud",
   "version": "1.0.0",
   "description": "Projeto para Resolução da atividade de back-end",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
   },
   "author": "Zani",
   "license": "MIT",
