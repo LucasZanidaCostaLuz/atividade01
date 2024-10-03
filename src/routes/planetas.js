@@ -19,18 +19,33 @@ const planetasRoutes = Router()
 planetasRoutes.get("/", (req, res) => {
         return res.status(200).send({ planetas })
 })
-    //Rota para criar novo elemento
+    //Rota para cadastrar novo elemento
 planetasRoutes.post("/", (req, res) => {
-        const { titulo, genero, emCartaz } = req.body;
-        const novoFilme = {
-            id: Number(Math.floor(Math.random()*99 + 1)),
-            titulo,
-            genero,
-            emCartaz,
-        }
-        planetas.push(novoFilme);
-        return res.status(201).send({ planetas })
+        const { nome, temperatura, agua, atm } = req.body
+
+if(!nome || !temperatura || !agua){
+    return res.status(400).send({
+        message: 'os campos nome, temperatura e água são campos obrigatórios'
     })
+}
+
+if(agua != "sim" && agua != "não"){
+    return res.status(400).send({
+        message: "digite 'sim' ou 'não'"
+    })
+}
+
+        const novoPlaneta = {
+            id: Number(Math.floor(Math.random()*999999 + 1)),
+            nome,
+            temperatura,
+            agua,
+            atm
+        }
+        
+        planetas.push(novoPlaneta)
+        return res.status(201).send({message: "planeta cadastrado", novoPlaneta })
+})
     //Rota para buscar um elemento especifico da array guloseimas
     planetasRoutes.get("/:id", (req, res) => {
         const { id } = req.params
